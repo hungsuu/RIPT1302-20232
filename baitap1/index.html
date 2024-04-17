@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .container {
+    /* Các thuộc tính hiện tại */
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Thêm hình nền */
+    background-image: url('pngtree-a-book-image_12994457'); /* Thay đổi đường dẫn đến hình ảnh của bạn */
+    background-size: cover; /* Đảm bảo hình ảnh nền được hiển thị đầy đủ */
+    background-position: center; /* Căn giữa hình ảnh */
+}
+    }
+    input[type="number"] {
+        width: calc(50% - 15px);
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    #result {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <input type="number" id="inputA" placeholder="Enter number A">
+    <input type="number" id="inputB" placeholder="Enter number B">
+    <br><br>
+    <button onclick="calculate('sum')">SUM</button>
+    <button onclick="calculate('subtract')">SUBTRACT</button>
+    <button onclick="calculate('multiply')">MULTIPLY</button>
+    <button onclick="calculate('divide')">DIVIDE</button>
+    <button onclick="resetInputs()">RESET</button>
+    <br><br>
+    <div id="result"></div>
+</div>
+
+<script>
+function calculate(operation) {
+    var a = parseFloat(document.getElementById('inputA').value);
+    var b = parseFloat(document.getElementById('inputB').value);
+    var resultDiv = document.getElementById('result');
+    var result;
+    if (isNaN(a) || isNaN(b)) {
+        resultDiv.textContent = "Please enter valid numbers for A and B.";
+        return;
+    }
+    switch (operation) {
+        case 'sum':
+            result = a + b;
+            break;
+        case 'subtract':
+            result = a - b;
+            break;
+        case 'multiply':
+            result = a * b;
+            break;
+        case 'divide':
+            if (b === 0) {
+                resultDiv.textContent = "Cannot divide by zero.";
+                return;
+            }
+            result = a / b;
+            break;
+        default:
+            result = "Invalid operation";
+    }
+    resultDiv.textContent = "Result: " + result;
+}
+
+function resetInputs() {
+    document.getElementById('inputA').value = '';
+    document.getElementById('inputB').value = '';
+    document.getElementById('result').textContent = '';
+}
+</script>
+</body>
+</html>
